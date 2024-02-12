@@ -1,4 +1,4 @@
-import { utilities as nestWinstonModuleUtilities } from 'nest-winston';
+import { WinstonModuleOptionsFactory, utilities as nestWinstonModuleUtilities } from 'nest-winston';
 import winston, { LoggerOptions } from 'winston';
 
 import { Injectable } from '@nestjs/common';
@@ -6,7 +6,7 @@ import { Injectable } from '@nestjs/common';
 import { ConfigService } from '../config/config.service';
 
 @Injectable()
-export class WinstonConfigService {
+export class WinstonConfigService implements WinstonModuleOptionsFactory {
   constructor(private readonly configService: ConfigService) {}
 
   #getDevelopmentTransport(): winston.transport[] {
